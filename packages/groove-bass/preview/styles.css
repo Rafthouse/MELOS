@@ -1,0 +1,64 @@
+:root {
+  --bg: #14161a; --panel: #1c1f26; --line: #2a2f3a; --ink: #e7e9ee; --dim: #8b93a3;
+  --ok: #4caf7e; --okbg: #143226; --warn: #d8a23a; --warnbg: #322713;
+  --note: #6ea8ff; --accent: #ff9d4d; --ghost: #45506a; --kick: #232a39; --chord: #c9a6ff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 14px/1.45 "Segoe UI", system-ui, sans-serif; }
+#app { max-width: 1180px; margin: 0 auto; padding: 18px 20px 40px; }
+h1 { font-size: 20px; margin: 0 0 14px; font-weight: 600; }
+h1 .sub { color: var(--dim); font-weight: 400; font-size: 14px; }
+h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .04em; color: var(--dim); margin: 0 0 8px; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin-bottom: 16px; }
+.controls label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--dim); }
+.controls select, .controls input { background: var(--panel); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font-size: 14px; }
+#play { align-self: end; background: #2b3445; color: var(--ink); border: 1px solid var(--line);
+  border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 14px; }
+#play:hover { background: #344056; }
+#play.on { background: var(--okbg); border-color: var(--ok); color: var(--ok); }
+
+.layout { display: grid; grid-template-columns: 1fr 320px; gap: 18px; }
+.dna { font-family: ui-monospace, monospace; font-size: 12.5px; color: var(--dim);
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; margin-bottom: 12px; }
+.dna b { color: var(--ink); }
+.rollwrap { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px; overflow-x: auto; }
+
+svg.roll { display: block; }
+svg.roll .kickcol { fill: var(--kick); }
+svg.roll .lane { stroke: #20242d; stroke-width: 1; }
+svg.roll .sub { stroke: #20242d; stroke-width: 1; }
+svg.roll .beat { stroke: #313846; stroke-width: 1; }
+svg.roll .bar { stroke: #46506a; stroke-width: 1.5; }
+svg.roll .lbl { fill: var(--dim); font: 10px ui-monospace, monospace; }
+svg.roll .beat-lbl { fill: var(--dim); font: 10px ui-monospace, monospace; }
+svg.roll .chord { fill: var(--chord); font: 600 13px "Segoe UI", sans-serif; }
+svg.roll .note { fill: var(--note); }
+svg.roll .note.accent { fill: var(--accent); }
+svg.roll .note.ghost { fill: var(--ghost); }
+svg.roll .note-lbl { fill: #0b0e14; font: 600 9px ui-monospace, monospace; }
+
+.cand { background: var(--panel); border: 1px solid var(--line); border-left-width: 3px;
+  border-radius: 6px; padding: 7px 9px; margin-bottom: 7px; cursor: pointer; }
+.cand:hover { border-color: #3a435a; }
+.cand.ok { border-left-color: var(--ok); }
+.cand.warn { border-left-color: var(--warn); }
+.cand.sel { outline: 1px solid #4a5876; }
+.cand .v { font-weight: 700; }
+.cand.ok .v { color: var(--ok); }
+.cand.warn .v { color: var(--warn); }
+.cand .fit { color: var(--dim); font-family: ui-monospace, monospace; font-size: 12px; }
+.cand .why { color: var(--dim); font-size: 12px; margin-top: 3px; }
+
+.principles { margin-top: 14px; }
+.principles h3 { font-size: 14px; margin: 0 0 6px; }
+.prin { font-size: 12.5px; margin-bottom: 5px; }
+.prin b { color: var(--chord); }
+.src { color: var(--dim); font-size: 11px; margin-top: 8px; font-style: italic; }
+.nbrs { display: flex; flex-wrap: wrap; gap: 6px; }
+.nbr { background: #232a36; border: 1px solid var(--line); border-radius: 12px; padding: 3px 9px; font-size: 12px; cursor: pointer; }
+.nbr:hover { border-color: var(--chord); }
+.nbr em { color: var(--chord); font-style: normal; font-family: ui-monospace, monospace; }
+footer { color: var(--dim); font-size: 12px; margin-top: 16px; }

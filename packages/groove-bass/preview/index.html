@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Groove-Bass Lab — preview</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <h1>Groove-Bass Lab <span class="sub">— інтерактивний прев'ю (R3)</span></h1>
+
+    <div class="controls">
+      <label>Стиль GGL
+        <select id="style"></select>
+      </label>
+      <label>Тоніка
+        <select id="tonic"></select>
+      </label>
+      <label>Акорди (на такт)
+        <input id="prog" type="text" value="Am Dm E7 Am" size="18" />
+      </label>
+      <label>Темп
+        <input id="tempo" type="number" value="95" min="40" max="220" />
+      </label>
+      <label>Архетип
+        <select id="arch"></select>
+      </label>
+      <button id="play">▶ Грати</button>
+    </div>
+
+    <div class="layout">
+      <section class="left">
+        <div id="dna" class="dna"></div>
+        <div id="roll" class="rollwrap"></div>
+      </section>
+      <aside class="right">
+        <h2>Рекомендовані архетипи</h2>
+        <div id="cands"></div>
+        <div id="principles" class="principles"></div>
+      </aside>
+    </div>
+    <footer>Бас виводиться з груву (вісь A) + акордового треку (вісь B). # = онсет кіка (для lock'у).</footer>
+  </div>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

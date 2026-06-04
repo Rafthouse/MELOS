@@ -1,0 +1,21 @@
+{
+  "name": "@melos/variation",
+  "version": "0.0.0",
+  "description": "MELOS — Variation Engine (M7): стильові трансформації мелодії.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@melos/core-theory": "0.0.0"
+  },
+  "devDependencies": {
+    "@melos/core-theory": "file:../core-theory",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

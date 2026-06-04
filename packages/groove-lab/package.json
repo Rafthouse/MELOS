@@ -1,0 +1,19 @@
+{
+  "name": "@melos/groove-lab",
+  "version": "0.0.0",
+  "description": "MELOS — Groove Grammar Lab інтеграція (PoC через shared AudioContext)",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.scoped.css"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build:css": "node scripts/prefix-css.mjs src/styles.css src/styles.scoped.css"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

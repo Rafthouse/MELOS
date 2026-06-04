@@ -1,0 +1,23 @@
+{
+  "name": "@melos/data",
+  "version": "0.0.0",
+  "description": "MELOS — типізовані музичні дані (лади, каденції, прогресії). Єдине джерело істини, валідоване Zod.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

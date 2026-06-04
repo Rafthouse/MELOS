@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+dist-web/
+preview-dist/
+build/
+.vite/
+coverage/
+*.tsbuildinfo
+
+# Packaged apps (electron/tauri)
+release/
+src-tauri/target/
+*.exe
+*.blockmap
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*

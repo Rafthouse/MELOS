@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "paths": {
+      "@melos/data": ["../../packages/data/src/index.ts"],
+      "@melos/core-theory": ["../../packages/core-theory/src/index.ts"],
+      "@melos/core-analysis": ["../../packages/core-analysis/src/index.ts"],
+      "@melos/core-pedagogy": ["../../packages/core-pedagogy/src/index.ts"],
+      "@melos/motif": ["../../packages/motif/src/index.ts"],
+      "@melos/harmony": ["../../packages/harmony/src/index.ts"],
+      "@melos/variation": ["../../packages/variation/src/index.ts"],
+      "@melos/groove-lab": ["../../packages/groove-lab/src/index.ts"],
+      "@melos/groove-bass": ["../../packages/groove-bass/src/index.ts"],
+      "@melos/audio": ["../../packages/audio/src/index.ts"],
+      "@melos/srs": ["../../packages/srs/src/index.ts"],
+      "@melos/ui": ["../../packages/ui/src/index.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}
