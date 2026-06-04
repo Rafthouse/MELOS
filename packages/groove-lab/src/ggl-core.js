@@ -110,16 +110,19 @@ const TRACKS = [
   { id: "shaker", name: "Shaker", sound: "shaker", layer: "texture" }
 ];
 
-// Maps track.sound → relative URL of the corresponding sample file.
+// Maps track.sound → URL of the corresponding sample file.
+// BASE_URL respects Vite's `base` config so paths resolve correctly both at
+// the domain root (dev) and under a project subpath like /MELOS/ (GitHub Pages).
+const BASE_URL = import.meta.env.BASE_URL;
 const SAMPLE_MAP = {
-  kick:     "/ggl-sounds/kick.wav",
-  snare:    "/ggl-sounds/snare.wav",
-  hat:      "/ggl-sounds/hihat-closed.wav",
-  openHat:  "/ggl-sounds/hihat-open.wav",
-  rim:      "/ggl-sounds/rim.wav",
-  tom:      "/ggl-sounds/tom.wav",
-  perc:     "/ggl-sounds/perc.wav",
-  shaker:   "/ggl-sounds/shaker.wav"
+  kick:     BASE_URL + "ggl-sounds/kick.wav",
+  snare:    BASE_URL + "ggl-sounds/snare.wav",
+  hat:      BASE_URL + "ggl-sounds/hihat-closed.wav",
+  openHat:  BASE_URL + "ggl-sounds/hihat-open.wav",
+  rim:      BASE_URL + "ggl-sounds/rim.wav",
+  tom:      BASE_URL + "ggl-sounds/tom.wav",
+  perc:     BASE_URL + "ggl-sounds/perc.wav",
+  shaker:   BASE_URL + "ggl-sounds/shaker.wav"
 };
 
 // Instruments in the same choke group cut each other off (MIDI standard behaviour).

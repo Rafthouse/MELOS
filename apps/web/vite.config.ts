@@ -9,7 +9,11 @@ import { resolve } from "node:path";
  * Vite читати TS-джерело пакетів напряму. Транзитивні рантайм-залежності
  * (tonal, tone, zod, ts-fsrs) встановлені тут, в apps/web.
  */
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // На GitHub Pages застосунок живе на підшляху /MELOS/, тому продакшн-збірка
+  // має використовувати цей base, інакше асети шукаються від кореня домену → 404.
+  // Dev-сервер лишаємо на корені для зручності локальної розробки.
+  base: command === "build" ? "/MELOS/" : "/",
   plugins: [react()],
   resolve: {
     alias: {
@@ -32,4 +36,4 @@ export default defineConfig({
   server: {
     port: 5173,
   },
-});
+}));

@@ -48,7 +48,7 @@ export function App() {
     <div className="app">
       <header className="app__topbar">
         <div className="app__brand">
-          <img src="/melos-logo.png" alt="MELOS" className="app__brand-logo" />
+          <img src={`${import.meta.env.BASE_URL}melos-logo.png`} alt="MELOS" className="app__brand-logo" />
           <span className="app__brand-sub text-secondary">{VIEW_LABELS[view]}</span>
         </div>
         <nav className="app__nav">
