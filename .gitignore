@@ -16,6 +16,9 @@ src-tauri/target/
 *.exe
 *.blockmap
 
+# Build archives
+docs.old/
+
 # Editor / OS
 .DS_Store
 Thumbs.db
