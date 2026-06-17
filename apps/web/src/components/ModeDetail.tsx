@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import type { ModeDefinition } from "@melos/data";
 import { createScale } from "@melos/core-theory";
-import { initAudio, playScale, playNote, stopPlayback, type ScaleDirection } from "@melos/audio";
+import { playScale, playNote, stopPlayback, type ScaleDirection } from "../audioLazy";
 import { TonicSelector } from "./TonicSelector";
 import { ScaleView } from "./ScaleView";
 import { CADENCE_LABELS } from "../labels";
@@ -18,10 +18,9 @@ export function ModeDetail({ mode, tonic, onTonicChange }: Props) {
   const [direction, setDirection] = useState<ScaleDirection>("ascending-descending");
 
   const handlePlayScale = useCallback(async () => {
-    await initAudio();
     const scale = createScale(mode.id, mode.formula, tonic);
     setPlaying(true);
-    playScale(scale, 4, {
+    await playScale(scale, 4, {
       direction,
       drone,
       onComplete: () => setPlaying(false),
@@ -34,8 +33,7 @@ export function ModeDetail({ mode, tonic, onTonicChange }: Props) {
   }, []);
 
   const handlePlayDegree = useCallback(async (noteName: string, octave: number) => {
-    await initAudio();
-    playNote(`${noteName}${octave}`, "4n", { instrument: "bell" });
+    await playNote(`${noteName}${octave}`, "4n", { instrument: "bell" });
   }, []);
 
   return (

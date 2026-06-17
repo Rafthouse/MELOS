@@ -1,4 +1,4 @@
-import{_ as p,r as s,j as o}from"./index-DDDhkVQ2.js";import{g as y}from"./tone-8cuZjeI-.js";const h=`
+import{_ as p,r as s,j as o}from"./index-CkdLaxN_.js";import{g as y}from"./tone-8cuZjeI-.js";const h=`
 <div class="ggl-root">
   <main class="app-shell">
     <section class="topbar" aria-label="Transport and generation controls">
