@@ -1,15 +1,35 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { MODES, getMode } from "@melos/data";
 import { ModeList } from "./components/ModeList";
 import { ModeDetail } from "./components/ModeDetail";
-import { EarTraining } from "./components/EarTraining";
-import { ComposerLab } from "./components/ComposerLab";
-import { MotifWorkshop, type LabSeed } from "./components/MotifWorkshop";
-import { RhythmDesigner } from "./components/RhythmDesigner";
-import { GrooveLab } from "./components/GrooveLab";
-import { GrooveBass } from "./components/GrooveBass";
-import { ReferenceLibrary } from "./components/ReferenceLibrary";
+import type { LabSeed } from "./components/MotifWorkshop";
 import type { GroovePattern } from "@melos/groove-lab";
+
+// Mode Explorer (ModeList + ModeDetail) лишається eager — це стартовий вид.
+// Решту важких вкладок вантажимо ліниво: так первинний бандл не тягне VexFlow,
+// smplr і код усіх редакторів, поки користувач їх не відкрив. Кожна вкладка —
+// окремий чанк, що підвантажується при першому переході на неї.
+const EarTraining = lazy(() =>
+  import("./components/EarTraining").then((m) => ({ default: m.EarTraining })),
+);
+const ComposerLab = lazy(() =>
+  import("./components/ComposerLab").then((m) => ({ default: m.ComposerLab })),
+);
+const MotifWorkshop = lazy(() =>
+  import("./components/MotifWorkshop").then((m) => ({ default: m.MotifWorkshop })),
+);
+const RhythmDesigner = lazy(() =>
+  import("./components/RhythmDesigner").then((m) => ({ default: m.RhythmDesigner })),
+);
+const GrooveLab = lazy(() =>
+  import("./components/GrooveLab").then((m) => ({ default: m.GrooveLab })),
+);
+const GrooveBass = lazy(() =>
+  import("./components/GrooveBass").then((m) => ({ default: m.GrooveBass })),
+);
+const ReferenceLibrary = lazy(() =>
+  import("./components/ReferenceLibrary").then((m) => ({ default: m.ReferenceLibrary })),
+);
 
 type View = "modes" | "lab" | "motif" | "rhythm" | "groove" | "groovebass" | "ear" | "library";
 
@@ -96,7 +116,10 @@ export function App() {
         ) : null}
       </header>
 
-      {view === "modes" ? (
+      <Suspense
+        fallback={<div className="app__loading text-secondary">Завантаження…</div>}
+      >
+        {view === "modes" ? (
         <div className="app__body">
           <aside className="app__sidebar">
             <ModeList
@@ -142,6 +165,7 @@ export function App() {
           />
         </main>
       )}
+      </Suspense>
     </div>
   );
 }

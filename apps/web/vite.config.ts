@@ -33,6 +33,23 @@ export default defineConfig(({ command }) => ({
       "@melos/ui": resolve(__dirname, "../../packages/ui/src/index.ts"),
     },
   },
+  build: {
+    // vexflow — велика стороння бібліотека, але вже ізольована в окремий лінивий
+    // чанк (вантажиться лише з нотними вкладками), тож попередження не релевантне.
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        // Окремі вендор-чанки: VexFlow і smplr тягнуть лише ліниві вкладки
+        // (ноти/семпли) → не потраплять у первинний бандл. Tone потрібен
+        // стартовому Mode Explorer, але як окремий чанк кешується стабільно.
+        manualChunks: {
+          vexflow: ["vexflow"],
+          smplr: ["smplr"],
+          tone: ["tone"],
+        },
+      },
+    },
+  },
   server: {
     port: 5173,
   },
