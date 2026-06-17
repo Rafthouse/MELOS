@@ -24,8 +24,21 @@ const VIEW_LABELS: Record<View, string> = {
   library: "Reference Library",
 };
 
+/** Пункти головної навігації в порядку показу (підписи — як у топбарі). */
+const NAV_ITEMS: { id: View; label: string }[] = [
+  { id: "modes", label: "Лади" },
+  { id: "lab", label: "Composer's Lab" },
+  { id: "motif", label: "Motif Workshop" },
+  { id: "rhythm", label: "Rhythm Designer" },
+  { id: "groove", label: "Groove Lab" },
+  { id: "groovebass", label: "Groove-Bass" },
+  { id: "ear", label: "Ear Training" },
+  { id: "library", label: "Бібліотека" },
+];
+
 export function App() {
   const [view, setView] = useState<View>("modes");
+  const [menuOpen, setMenuOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string>(MODES[0]!.id);
   const [tonic, setTonic] = useState<string>("D");
   const [focusCitation, setFocusCitation] = useState<string | undefined>(undefined);
@@ -44,6 +57,12 @@ export function App() {
     setView("lab");
   };
 
+  /** Перехід на вид із головної навігації — закриває мобільне меню. */
+  const go = (next: View) => {
+    setView(next);
+    setMenuOpen(false);
+  };
+
   return (
     <div className="app">
       <header className="app__topbar">
@@ -51,72 +70,30 @@ export function App() {
           <img src={`${import.meta.env.BASE_URL}melos-logo.png`} alt="MELOS" className="app__brand-logo" />
           <span className="app__brand-sub text-secondary">{VIEW_LABELS[view]}</span>
         </div>
-        <nav className="app__nav">
-          <button
-            className={
-              "app__nav-item" + (view === "modes" ? " app__nav-item--active" : "")
-            }
-            onClick={() => setView("modes")}
-          >
-            Лади
-          </button>
-          <button
-            className={
-              "app__nav-item" + (view === "lab" ? " app__nav-item--active" : "")
-            }
-            onClick={() => setView("lab")}
-          >
-            Composer's Lab
-          </button>
-          <button
-            className={
-              "app__nav-item" + (view === "motif" ? " app__nav-item--active" : "")
-            }
-            onClick={() => setView("motif")}
-          >
-            Motif Workshop
-          </button>
-          <button
-            className={
-              "app__nav-item" + (view === "rhythm" ? " app__nav-item--active" : "")
-            }
-            onClick={() => setView("rhythm")}
-          >
-            Rhythm Designer
-          </button>
-          <button
-            className={
-              "app__nav-item" + (view === "groove" ? " app__nav-item--active" : "")
-            }
-            onClick={() => setView("groove")}
-          >
-            Groove Lab
-          </button>
-          <button
-            className={
-              "app__nav-item" + (view === "groovebass" ? " app__nav-item--active" : "")
-            }
-            onClick={() => setView("groovebass")}
-          >
-            Groove-Bass
-          </button>
-          <button
-            className={
-              "app__nav-item" + (view === "ear" ? " app__nav-item--active" : "")
-            }
-            onClick={() => setView("ear")}
-          >
-            Ear Training
-          </button>
-          <button
-            className={
-              "app__nav-item" + (view === "library" ? " app__nav-item--active" : "")
-            }
-            onClick={() => setView("library")}
-          >
-            Бібліотека
-          </button>
+        <button
+          className="app__menu-toggle"
+          aria-label={menuOpen ? "Закрити меню" : "Відкрити меню"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
+        <nav className={"app__nav" + (menuOpen ? " app__nav--open" : "")}>
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.id}
+              className={
+                "app__nav-item" + (view === item.id ? " app__nav-item--active" : "")
+              }
+              onClick={() => go(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
         </nav>
+        {menuOpen ? (
+          <div className="app__nav-backdrop" onClick={() => setMenuOpen(false)} />
+        ) : null}
       </header>
 
       {view === "modes" ? (
